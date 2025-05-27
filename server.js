@@ -13,7 +13,7 @@ const scheduleRoutes = require("./routes/schedules")
 const app = express()
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3001",
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
   credentials: true,
 }))
 app.use(express.json({ limit: "5mb" }))

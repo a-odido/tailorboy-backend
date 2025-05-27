@@ -60,13 +60,18 @@ const verifyToken = require("../middleware/auth")
 
 router.get("/users", verifyToken, async (req, res) => {
   try {
+    const user = await User.findById(req.user.id)
+
+    if (!user || user.email !== "support@tailorboy.com") {
+      return res.status(403).json({ message: "Access denied" })
+    }
+
     const users = await User.find().select("-password")
     res.status(200).json(users)
   } catch (err) {
     res.status(500).json({ message: "Error fetching users", error: err.message })
   }
 })
-
 
 
 module.exports = router
