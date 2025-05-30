@@ -8,6 +8,7 @@ const uploadRoutes = require("./routes/upload")
 const customerRoutes = require("./routes/customers")
 const designRoutes = require("./routes/designs")
 const scheduleRoutes = require("./routes/schedules")
+const usersRoutes = require("./routes/users");
 
 
 const app = express()
@@ -23,6 +24,7 @@ app.use("/uploads", express.static("uploads"))
 app.use("/api/customers", customerRoutes)
 app.use("/api/designs", designRoutes)
 app.use("/api/schedules", scheduleRoutes)
+app.use("/api/users", usersRoutes);
 
 //app.use(express.json({ limit: "5mb" }))
 //app.use(express.urlencoded({ extended: true, limit: "5mb" }))

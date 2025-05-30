@@ -53,4 +53,24 @@ router.delete("/:id", verifyToken, async (req, res) => {
   res.json({ message: "Design deleted" })
 })
 
+router.put("/:id", verifyToken, async (req, res) => {
+  const { title, description } = req.body
+  
+  try {
+    const updated = await Design.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.id },
+      { title, description },
+      { new: true }
+    )
+    
+    if (!updated) {
+      return res.status(404).json({ message: "Design not found or unauthorized" })
+    }
+
+    res.json(updated)
+  } catch (err) {
+    res.status(500).json({ message: "Error updating design", error: err.message })
+  }
+})
+
 module.exports = router

@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
   phone: String,
   address: String,
   profilePicture: String,
+  suspended: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true })
 
 module.exports = mongoose.model("User", userSchema)
